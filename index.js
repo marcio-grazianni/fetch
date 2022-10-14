@@ -5,6 +5,8 @@ window.onload = (event) => {
     // console.log('evento onload');
     // console.log(console);
 
+    exibe_oculta_imagem()
+
     var btnAfiliados = document.getElementById("btnAfiliados");
     btnAfiliados.addEventListener("click", btnAfiliados_click.bind(null, '1', '3'), false);
 };
@@ -108,4 +110,72 @@ function btnEndpointJQuery_click() {
             }
         }
     });
+}
+
+function imgUpload_change() {
+    let imgUpload = document.getElementById("imgUpload");
+    let imgPreview = document.getElementById("imgPreview");
+    let arquivo_json = imgUpload.files[0];
+    if (arquivo_json === undefined) {
+        imgPreview.src = ""
+    } else {
+        imgPreview.src = URL.createObjectURL(arquivo_json)
+    }
+    exibe_oculta_imagem();
+}
+
+function btnGravar_click() {
+    let imgUpload = document.getElementById("imgUpload");
+    let imgPreview = document.getElementById("imgPreview");
+    let arquivo_json = imgUpload.files[0];
+    if (arquivo_json === undefined) {
+        imgPreview.src = ""
+        alert("Selecione um arquivo primeiro.");
+        return;
+    }
+    console.log(arquivo_json);
+    for (let arquivo in arquivo_json) {
+        console.log(arquivo, ":", arquivo_json[arquivo]);
+    }
+}
+
+function exibe_oculta_imagem() {
+    let divPreview = document.getElementById("divPreview");
+    let imgUpload = document.getElementById("imgUpload");
+    let arquivo_json = imgUpload.files[0];
+    if (arquivo_json === undefined) {
+        divPreview.style.display = 'none';
+    } else {
+        divPreview.style.display = 'flex';
+    }
+}
+
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
+
+async function btnEnviaArquivo() {
+    let edtUrl_envio = document.getElementById("edtUrl_envio");
+    let imgUpload = document.getElementById("imgUpload");
+    let arquivo_json = imgUpload.files[0];
+    if (arquivo_json !== undefined) {
+        let arquivo_b64 = await toBase64(arquivo_json);
+        console.log(arquivo_b64);
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: edtUrl_envio.value,
+            data: JSON.stringify({
+                "imagem": arquivo_b64
+            }),
+            success: function (endpoint_json) {
+                console.log("Retornou...");
+                console.log(endpoint_json);
+            }
+        });
+    }
 }

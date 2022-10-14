@@ -10,6 +10,9 @@
 :root {
     --cor-branca: white;
     --cor-preta: black;
+    --cor-sombra: #AAAAAA;
+    --cor-fundo1: #546E7A;
+    --cor-fundo2: #F1F5F9;
 
     --cor-fundo-menu: #3f51b5;
 
@@ -36,6 +39,7 @@
 
 body {
     font-size: 100%;
+    background-color: var(--cor-fundo1);
 }
 
 link {
@@ -125,4 +129,27 @@ hr {
 .botao-branco:hover {
     background-color: var(--cor-botao-branco-hover);
     color: var(--cor-preta);
+}
+
+.fundo-janelas {
+    background-color: var(--cor-fundo2);
+    border-radius: 15px;
+}
+
+.flex-h {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.flex-v {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.sombra1 {
+    border: 1px solid #D6D6D6;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px 0px var(--cor-sombra);
 }

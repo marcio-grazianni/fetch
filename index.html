@@ -9,12 +9,30 @@
         <link rel="stylesheet" type="text/css" href="index.css">
     </head>
     <body>
-        <!-- <button id="btnAfiliados" onclick="btnAfiliados_click()">Afiliados</button> -->
-        <button id="btnAfiliados" class="botao botao-laranja m-2" style="height:50px">Afiliados</button>
-        <button id="btnCategorias" class="botao botao-verde m-2" style="height:50px" onclick="btnCategorias_click()">Categorias (GET)</button>
-        <button id="btnCategorias2" class="botao botao-vermelho m-2" style="height:50px" onclick="btnCategoriasJQuery_click()">Categorias JQuery (GET)</button>
-        <button id="btnEndpoint" class="botao botao-azul m-2" style="height:50px" onclick="btnEndpoint_click()">Endpoint (POST)</button>
-        <button id="btnEndpoint2" class="botao botao-laranja m-2" style="height:50px" onclick="btnEndpointJQuery_click()">Endpoint JQuery (POST)</button>
+        <div class="container">
+            <div class="fundo-janelas mt-5 p-4">
+                <div class="flex-h sombra1 p-2">
+                    <!-- <button id="btnAfiliados" onclick="btnAfiliados_click()">Afiliados</button> -->
+                    <button id="btnAfiliados" class="botao botao-laranja m-2" style="height:50px;">Afiliados (GET)</button>
+                    <button id="btnCategorias" class="botao botao-verde m-2" style="height:50px" onclick="btnCategorias_click()">Categorias (GET)</button>
+                    <button id="btnCategorias2" class="botao botao-vermelho m-2" style="height:50px" onclick="btnCategoriasJQuery_click()">Categorias JQuery (GET)</button>
+                    <button id="btnEndpoint" class="botao botao-azul m-2" style="height:50px" onclick="btnEndpoint_click()">Endpoint (POST)</button>
+                    <button id="btnEndpoint2" class="botao botao-laranja m-2" style="height:50px" onclick="btnEndpointJQuery_click()">Endpoint JQuery (POST)</button>
+                    <button id="btnEnviaArquivo" class="botao botao-verde m-2" style="height:50px" onclick="btnEnviaArquivo()">Envia Arquivo JQuery (POST)</button>
+
+                    <div class="form-group sombra1 m-2 p-3 w-100">
+                        <label for="edtUrl_envio">URL para envio</label>
+                        <input id="edtUrl_envio" class="form-control" type="url" />
+                        <label for="imgUpload">Upload de arquivo</label>
+                        <input id="imgUpload" class="form-control" type="file" accept="image/png, image/gif, image/jpeg" onchange="imgUpload_change()"/>
+                        <button id="btnGravar" class="botao botao-verde mt-3" style="height:50px" onclick="btnGravar_click()">Gravar</button>
+                        <div id="divPreview" class="flex-h sombra1 mt-3" style="display: none;">
+                            <img id="imgPreview" src="#" alt="Preview" />
+                        </div>
+                </div>
+                </div>
+            </div>
+        </div>
 
         <script src="bootstrap.bundle.min.js"></script>
         <script src="jquery.min.js"></script>
