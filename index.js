@@ -70,3 +70,42 @@ function btnCategoriasJQuery_click() {
         }
     });
 }
+
+async function btnEndpoint_click() {
+    let endpoint_json = await (await fetch("http://nat-23683.nuvem-brasil-10.absamcloud.com:44645/webrunstudio/retornaendpointmerccap.rule?sys=GER",
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "usuario": "merccap",
+                "senha": "merccap@190697br",
+                "cnpj_cpf": "24875237000184"
+            })
+        }
+    )).json();
+    // console.log(endpoint_json);
+    for (let endpoint in endpoint_json) {
+        console.log(endpoint, ":", endpoint_json[endpoint]);
+    }
+}
+
+function btnEndpointJQuery_click() {
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        url: 'http://nat-23683.nuvem-brasil-10.absamcloud.com:44645/webrunstudio/retornaendpointmerccap.rule?sys=GER',
+        data: JSON.stringify({
+            "usuario": "merccap",
+            "senha": "merccap@190697br",
+            "cnpj_cpf": "24875237000184"
+        }),
+        success: function (endpoint_json) {
+            for (let endpoint in endpoint_json) {
+                console.log(endpoint, ":", endpoint_json[endpoint]);
+            }
+        }
+    });
+}
